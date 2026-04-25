@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands
 import os
 
-# Bot Token එක
-TOKEN = 'MTQ5NzA5NjM2MjA4NzQxNTg2MA.GL8B41.NAZfnWfDjnE_fWiiaNaNDpgWSxzSaxHgJqJ6N4'
+# Bot Token from environment variable
+TOKEN = os.environ.get('DISCORD_TOKEN')
 
 # Bot සකස් කිරීම
 intents = discord.Intents.default()
