@@ -1,0 +1,31 @@
+import discord
+from discord.ext import commands
+import os
+
+# Bot Token එක
+TOKEN = 'MTQ5NzA5NjM2MjA4NzQxNTg2MA.GL8B41.NAZfnWfDjnE_fWiiaNaNDpgWSxzSaxHgJqJ6N4'
+
+# Bot සකස් කිරීම
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user} දැන් සාර්ථකව Online සම්බන්ධ වී ඇත!')
+    # Bot ගේ Status එක වෙනස් කිරීම
+    await bot.change_presence(activity=discord.Game(name="!hello ගහන්න"))
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'ආයුබෝවන් {ctx.author.name}! මම ඔයාගේ අලුත් Discord Bot.')
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send(f'වේගය (Latency): {round(bot.latency * 1000)}ms')
+
+# Bot එක run කිරීම
+try:
+    bot.run(TOKEN)
+except discord.errors.LoginFailure:
+    print("Error: ලබාදුන් Token එක වැරදියි. කරුණාකර නැවත පරීක්ෂා කරන්න.")
